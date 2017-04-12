@@ -1,4 +1,4 @@
-//添え字関連修正開始
+//添え字関連修正
 
 //季節効果用
   //春
@@ -13,6 +13,7 @@ int season=0;
 
 //添え字
 int i=0;
+int r=0;
 
 //インスタンス数
   int num=36;
@@ -66,9 +67,9 @@ void setup(){
 //インスタンス作成
 int pos=0;
   //春：1,夏：2，秋：3,冬:4
-  for(i=0;i<num;i++){
-    tr[i]=new Tree(pos,0,2);
-    pos+=200;
+  for(i=r;i<num;i++){
+    tr[i]=new Tree(pos+50,0,i/9);
+    pos=250*i;
   }
 }
 
@@ -76,15 +77,19 @@ int pos=0;
 //背景→奥木→季節効果→手前木→（手前季節効果）→レンガ→少女
 void draw(){
   
+  
   //背景
-  image(Back,br,0);
+  image(Back,0,0);
 
 
   //インスタンステスト
-  for(i=0;i<num;i++){
-  tr[i].display();
-  tr[i].move();
+  
+  for(i=season*9;i<(season+1)*9;i++){
+    tr[i].display();
+    tr[i].move();
   }
+
+
   //テスト
 
   text("テスト",250,50);
@@ -96,9 +101,18 @@ void draw(){
   //背景、レンガ移動
   br--;
   
+  //季節切り替え、木座標
   if(br<-1000){
     reset();
+    season++; 
+     if(season>=4){
+      season=0;
+    }   
   }
+  
+
+  
+  
 }
 
 //倍速化(→入力)
@@ -111,7 +125,7 @@ void keyReleased(){
 void reset(){
   br=0;
   for(i=0;i<36;i++){
-    tr[i].x=txlog[i];
+    tr[i].x=txlog[(i+1)%10];
    }
 }
 

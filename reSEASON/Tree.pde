@@ -20,16 +20,16 @@ class Tree{
   void display(){
     //種類
     switch(type){
-      case 1://春
+      case 0://春
         image(SpT,x,y);
         break;
-      case 2://夏
+      case 1://夏
         image(SuT,x,y);
         break;
-      case 3://秋
+      case 2://秋
         image(AuT,x,y);
         break;
-      case 4://冬
+      case 3://冬
         image(WiT,x,y);
         break;
       default://1～4以外
