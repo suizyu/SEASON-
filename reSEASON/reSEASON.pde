@@ -66,7 +66,7 @@ void setup(){
   
 //インスタンス作成
 int pos=0;
-  //春：1,夏：2，秋：3,冬:4
+  //春：0,夏：1，秋：2,冬:3
   for(i=r;i<num;i++){
     tr[i]=new Tree(pos+5,0,i/9);
     pos=250*i;
