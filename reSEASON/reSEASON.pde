@@ -16,7 +16,7 @@ int i=0;
 int r=0;
 
 //インスタンス数
-  int num=36;
+  int num=9*4;
   //座標記憶
   int[] txlog=new int[num];
 //オブジェクト宣言
@@ -26,12 +26,12 @@ Tree tr[]=new Tree[num];
 //道、背景x座標
 int br=0;
 
+//アニメーション用移動速度
+int speed=1;
+
 //変数宣言
 PImage Back=null;
-PImage SpT=null;
-PImage SuT=null;
-PImage AuT=null;
-PImage WiT=null;
+PImage[] trpt=new PImage[4];;
 PImage road=null;
 PImage gir=null;
 
@@ -50,10 +50,10 @@ void setup(){
   //背景
   Back=loadImage("BG.png");
   //木；春～冬
-  SpT=loadImage("CC.png");
-  SuT=loadImage("NT.png");
-  AuT=loadImage("NTF.png");
-  WiT=loadImage("NTW.png");
+  trpt[0]=loadImage("CC.png");
+  trpt[1]=loadImage("NT.png");
+  trpt[2]=loadImage("NTF.png");
+  trpt[3]=loadImage("NTW.png");
   //レンガ道
   road=loadImage("renga.png");
   //少女
@@ -68,7 +68,7 @@ void setup(){
 int pos=0;
   //春：1,夏：2，秋：3,冬:4
   for(i=r;i<num;i++){
-    tr[i]=new Tree(pos+50,0,i/9);
+    tr[i]=new Tree(pos+5,0,i/9);
     pos=250*i;
   }
 }
@@ -80,26 +80,26 @@ void draw(){
   
   //背景
   image(Back,0,0);
-
-
   //インスタンステスト
-  
   for(i=season*9;i<(season+1)*9;i++){
     tr[i].display();
     tr[i].move();
   }
-
-
+  
   //テスト
-
   text("テスト",250,50);
+  
   
   //レンガ
   image(road,br,0);
   //少女
   image(gir,20,250);
   //背景、レンガ移動
-  br--;
+  if(keyCode==RIGHT){
+    br-=speed*3;
+  }else{
+    br-=speed;
+  }
   
   //季節切り替え、木座標
   if(br<-1000){
@@ -117,6 +117,7 @@ void draw(){
 
 //倍速化(→入力)
 void keyPressed(){
+
 }
 void keyReleased(){
 }

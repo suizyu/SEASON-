@@ -14,27 +14,14 @@ class Tree{
   //メソッド定義
   //アニメーション
   void move(){
-    x-=1;
+    if(keyCode==RIGHT){
+      x-=speed*3;
+    }else{
+      x-=speed;
+    }
   }
   //表示
   void display(){
-    //種類
-    switch(type){
-      case 0://春
-        image(SpT,x,y);
-        break;
-      case 1://夏
-        image(SuT,x,y);
-        break;
-      case 2://秋
-        image(AuT,x,y);
-        break;
-      case 3://冬
-        image(WiT,x,y);
-        break;
-      default://1～4以外
-         break;
-    }
+        image(trpt[season],x,y);
   }
-
 }
