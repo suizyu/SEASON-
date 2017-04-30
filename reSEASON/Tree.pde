@@ -22,6 +22,16 @@ class Tree{
   }
   //表示
   void display(){
-        image(trpt[season],x,y);
+        if(i%2==1){
+          //色変化
+          if(i<=36&&i>27){
+            tint(135,135,135);
+          }
+          image(trpt[season],x,y);
+        }else{
+          noTint();
+          image(trpt[season],x,y);
+        }
   }
+  
 }

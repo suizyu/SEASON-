@@ -15,6 +15,13 @@ int season=0;
 int i=0;
 int r=0;
 
+//位置
+int pos=0;
+
+//少女ジャンプ用(y座標,識別)
+int jump=0;
+int ud=0;
+
 //インスタンス数
   int num=9*4;
   //座標記憶
@@ -65,7 +72,6 @@ void setup(){
   fill(0,0,0);
   
 //インスタンス作成
-int pos=0;
   //春：0,夏：1，秋：2,冬:3
   for(i=r;i<num;i++){
     tr[i]=new Tree(pos+5,0,i/9);
@@ -77,23 +83,42 @@ int pos=0;
 //背景→奥木→季節効果→手前木→（手前季節効果）→レンガ→少女
 void draw(){
   
-  
   //背景
+  noTint();
   image(Back,0,0);
-  //インスタンステスト
-  for(i=season*9;i<(season+1)*9;i++){
+  //インスタンス(奥)
+  for(i=season*9;i<(season+1)*9;i+=2){
     tr[i].display();
     tr[i].move();
   }
   
   //テスト
+  noTint();
   text("テスト",250,50);
-  
+  for(i=season*9+1;i<(season+1)*9;i+=2){
+    tr[i].display();
+    tr[i].move();
+  }  
   
   //レンガ
   image(road,br,0);
+  
   //少女
-  image(gir,20,250);
+  image(gir,20,250-jump);
+  //ジャンプ
+  if(ud%2==0){
+    jump++;
+    if(jump==50){
+      ud++;
+    }
+  }else{
+    jump--;
+    if(jump==0){
+      ud++;
+    }
+  }
+    
+  
   //背景、レンガ移動
   if(keyCode==RIGHT){
     br-=speed*3;
@@ -122,6 +147,11 @@ void keyPressed(){
 void keyReleased(){
 }
 
+//クリック時
+void mouseClicked(){
+
+}
+
 //座標リセット
 void reset(){
   br=0;
@@ -129,4 +159,6 @@ void reset(){
     tr[i].x=txlog[(i+1)%10];
    }
 }
+
+
 
