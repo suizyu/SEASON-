@@ -18,9 +18,10 @@ int r=0;
 //位置
 int pos=0;
 
-//少女ジャンプ用(y座標,識別)
+//少女ジャンプ用(y座標,識別,制御)
 int jump=0;
 int ud=0;
+int at1=0;
 
 //インスタンス数
   int num=9*4;
@@ -92,7 +93,9 @@ void draw(){
     tr[i].move();
   }
   
-  //テスト
+  
+  
+  //インスタンス(手前)
   noTint();
   text("テスト",250,50);
   for(i=season*9+1;i<(season+1)*9;i+=2){
@@ -106,17 +109,21 @@ void draw(){
   //少女
   image(gir,20,250-jump);
   //ジャンプ
-  if(ud%2==0){
-    jump++;
-    if(jump==50){
-      ud++;
-    }
-  }else{
-    jump--;
-    if(jump==0){
-      ud++;
+  if(at1%2==1){
+    if(ud%2==0){
+      jump++;
+      if(jump==50){
+        ud++;
+      }
+    }else{
+      jump--;
+      if(jump==0){
+        ud++;
+        at1++;
+      }
     }
   }
+
     
   
   //背景、レンガ移動
@@ -149,7 +156,7 @@ void keyReleased(){
 
 //クリック時
 void mouseClicked(){
-
+  at1++;
 }
 
 //座標リセット
@@ -159,6 +166,5 @@ void reset(){
     tr[i].x=txlog[(i+1)%10];
    }
 }
-
 
 
