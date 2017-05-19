@@ -133,12 +133,12 @@ void draw(){
   if(at1%2==1){
     if(ud%2==0){
       jump+=js;
-      if(jump==50){
+      if(jump>=50){
         ud++;
       }
     }else{
       jump-=js;
-      if(jump==0){
+      if(jump<=0){
         ud++;
         at1++;
       }
